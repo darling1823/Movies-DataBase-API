@@ -14,6 +14,7 @@ const Navigation = styled.div`
     position: absolute;
     top: 50px;
     z-index: 1;
+    font-family: 'Source Sans Pro', sans-serif;
 `
 const MenuContainer = styled.figure` 
     width: 10vw;

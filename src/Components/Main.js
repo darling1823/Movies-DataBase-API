@@ -15,6 +15,7 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     height: 1130px;
+    font-family: 'Nanum Gothic', sans-serif;
 `
 
 const ProductContainer = styled.figure`
