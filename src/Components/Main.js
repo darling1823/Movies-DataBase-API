@@ -6,6 +6,9 @@ const MAIN = styled.main`
     background: #FAF3DD;
     justify-content: center;
     height: 64.7vh;
+    @media screen and (max-width: 425px){
+        height: 88vh;
+    }
 `
 
 const SECTION = styled.section`
@@ -18,6 +21,10 @@ const SECTION = styled.section`
     margin-top: 2vw;
     border-radius: 40px;
     height: 90%;
+    @media screen and (max-width: 425px){
+        height: 98%;
+        width: 80%;
+    }
 `
 
 const H2 = styled.h2`
@@ -26,6 +33,11 @@ const H2 = styled.h2`
     font-weight: 300;
     margin-top: 0.5vw;
     margin-bottom: 0.5vw;
+    @media screen and (max-width: 425px){
+        margin-top: 1.5vw;
+        margin-bottom: 1.5vw;
+        font-size: 4.5vw;
+    }
 `
 
 const INPUT = styled.input`
@@ -34,6 +46,10 @@ const INPUT = styled.input`
     height: 50px;
     width: 50%;
     border-radius: 60px;
+    @media screen and (max-width: 425px){
+        height: 30px;
+        width: 75%;
+    }
 `
 const BUTTON = styled.button`
     font-family: 'Karla', sans-serif;
@@ -49,12 +65,23 @@ const BUTTON = styled.button`
     &:hover{
         cursor: pointer;
     }
+
+    @media screen and (max-width: 425px){
+        width: 50%;
+        margin-top: 1.5vw;
+        margin-bottom: 1.5vw;
+        font-size: 4vw;
+    }
 `
 
 const DIV = styled.div`
     width: 50%;
     height: 74%;
     overflow: hidden;
+    @media screen and (max-width: 425px){
+        width: 85%;
+        height: 85%;
+    }
 `
 const UL = styled.ul`
     display: flex;
@@ -66,6 +93,9 @@ const UL = styled.ul`
 const LI = styled.li`
     font-family: 'Square Peg', cursive;
     font-size: 2vw;
+    @media screen and (max-width: 425px){
+        font-size: 6.5vw;
+    }
 `
 
 const DELETE = styled.button`
@@ -81,6 +111,11 @@ const DELETE = styled.button`
     color: #FAF3DD;
     &:hover{
         cursor: pointer;
+    }
+    @media screen and (max-width: 425px){
+        font-size: 3vw;
+        height: 30px;
+        width: 30px;
     }
 `
 
@@ -108,6 +143,17 @@ export default class Main extends Component{
         })}
     }
 
+    handlePress = (e) => {
+        if(this.state.tasks !== "" && e.key === "Enter"){
+        this.setState({
+            add: this.state.add.concat({
+                tasks: this.state.tasks,
+                id: Math.random(),
+            }),
+            tasks: ""
+        })}
+    }
+
     delete = (id) => {
         this.setState({
             add: this.state.add.filter((item) => {
@@ -121,7 +167,7 @@ export default class Main extends Component{
             <MAIN>
                 <SECTION>
                     <H2>add your tasks here!</H2>
-                    <INPUT value={this.state.tasks} onChange={this.handleChange} />
+                    <INPUT value={this.state.tasks} onChange={this.handleChange}  onKeyPress={this.handlePress} />
                     <BUTTON onClick={this.handleClick}>add</BUTTON>
                     <DIV>
                         {this.state.add.map((item) => (

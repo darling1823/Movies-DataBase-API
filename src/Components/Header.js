@@ -17,12 +17,19 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items:center;
+  @media screen and (max-width: 425px){
+    height: 100px;
+    border-bottom: solid #4056F4 10px;
+  }
 `;
 
 const H1 = styled.h1`
     font-family: 'Square Peg', cursive;
     font-size: 10vw;
     color: #FAF3DD;
+    @media screen and (max-width: 425px){
+        font-size: 20vw;
+      }
 `;
 
 const H2 = styled.h2`
@@ -32,11 +39,17 @@ const H2 = styled.h2`
     font-size: 2vw;
     color: #FAF3DD;
     margin-bottom: 1.5vw;
+    @media screen and (max-width: 425px){
+        display: none;
+      }
 `;
 
 const NAV = styled.nav`
     background: #4056F4;
     width: 100vw;
+    @media screen and (max-width: 425px){
+        display: none;
+      }
 `
 
 const UL = styled.ul`
