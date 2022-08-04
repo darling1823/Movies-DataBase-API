@@ -1,24 +1,25 @@
 import React, {Component} from 'react';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 import Header from './Components/Header.js';
 import Main from './Components/Main.js';
 
-const Container = styled.div`
-  background-color: #730C02;
-  width: 100vw;
-  height: 1190px;
-  display:flex;
-  justify-content: center;
+const GlobalStyle = createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 `
 
 
-export default class Challenge extends Component{
+export default class ToDo extends Component{
   render(){
     return(
-       <Container>
+       <body>
+        <GlobalStyle/>
         <Header/>
         <Main/>
-       </Container>
+       </body>
     )
   }
 }

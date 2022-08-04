@@ -1,111 +1,84 @@
-import { toBePartiallyChecked } from '@testing-library/jest-dom/dist/matchers';
 import React, {Component} from 'react';
 import styled from 'styled-components';
-import product from './data/intensity.png'
 
-const Container = styled.div`
-    background-color: #D94350;
-    width: 88vw;
-    position: relative;
-    z-index: 0;
-    top: 15px;
-    border: solid  10px;
-    border-radius: 50px;
+const MAIN = styled.main`
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 1130px;
-    font-family: 'Nanum Gothic', sans-serif;
-`
-
-const ProductContainer = styled.figure`
-    margin-top: 20vw;
-    display: flex;
+    background: #FAF3DD;
     justify-content: center;
-    width: 40vw;
+    height: 64.7vh;
 `
 
-const Product = styled.img`
-    width: 250px;
-    height: 360px;
-`
-
-const PriceContainer = styled.div`
+const SECTION = styled.section`
+    background: #1B1B3A;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 80vw;
+    width: 50%;
+    color: #FAF3DD;
+    margin-top: 2vw;
+    border-radius: 40px;
+    height: 90%;
 `
 
-const Price = styled.h1`
-    font-weight: 400;
+const H2 = styled.h2`
+    font-family: 'Karla', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
 `
 
-const AboutContainer = styled.div`
-    width: 80vw;
-    display:flex;
-    flex-direction:column;
-`
-
-const AboutText = styled.h2`
-    font-weight: 100;
-`
-
-const ChooseContainer = styled.div`
-    width: 90vw;
-    display:flex;
-    align-items:center;
-    justify-content: space-evenly;
-`
-
-const Choose = styled.h2`
-    font-weight: 100;
-    font-size: 7vw;
-`
-
-const ChooseButton = styled.button`
-    background-color: #D94350;
-    width: 5vw;
-    height: 20px;
-    border-radius: 60px;
-    &:hover{
-        cursor: pointer;
-    }
-`
-const BuyContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 80vw;
+const INPUT = styled.input`
+    background: #DB5461;
+    border: none;
     height: 50px;
-    border: solid 1px;
+    width: 50%;
     border-radius: 60px;
-    overflow: none;
 `
-
-const BuyButton = styled.button`
-    font-size: 5vw;
-    background-color: #D94350;
+const BUTTON = styled.button`
+    font-family: 'Karla', sans-serif;
+    font-style: italic;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    font-size: 1vw;
+    width: 25%;
     border: none;
     border-radius: 60px;
+    background: #4056F4;
+    color: #FAF3DD;
     &:hover{
         cursor: pointer;
     }
 `
 
-const BuyNumber = styled.h2`
-    font-weight: 200;
+const DIV = styled.div`
+    width: 50%;
+    height: 74%;
+    overflow: hidden;
+`
+const UL = styled.ul`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 `
 
-const FinishButton = styled.button`
-    margin-top: 5vw;
-    width: 80vw;
-    height: 50px;
+const LI = styled.li`
+    font-family: 'Square Peg', cursive;
+    font-size: 2vw;
+`
+
+const DELETE = styled.button`
+    margin-right: 0.5vw;
+    border: none;
+    background: #4056F4;
+    height: 40px;
+    width: 40px;
+    font-family: 'Karla', sans-serif;
+    font-style: italic;
+    font-size: 0.8vw;
     border-radius: 60px;
-    font-size: 5vw;
-    background-color: black;
-    color: white;
-    margin-bottom: 5vw;
+    color: #FAF3DD;
     &:hover{
         cursor: pointer;
     }
@@ -114,76 +87,52 @@ const FinishButton = styled.button`
 export default class Main extends Component{
 
     state = {
-        bag: '#D94350',
-        jar: '#D94350',
-        number: 1,
+        tasks: "",
+        add: [],
     }
 
-    Bag = () => {
-        if(this.state.jar == "#D94350"){
-        if(this.state.bag == "#D94350"){
+    handleChange = (event) => {
         this.setState({
-            bag: document.getElementsByTagName('button')[0].style.backgroundColor = "black"
-        })}else{
-            this.setState({bag: document.getElementsByTagName('button')[0].style.backgroundColor = '#D94350'})
-        }}
+            tasks: event.target.value
+        })
+    };
+
+    handleClick = () => {
+        if(this.state.tasks !== ""){
+        this.setState({
+            add: this.state.add.concat({
+                tasks: this.state.tasks,
+                id: Math.random(),
+            }),
+            tasks: ""
+        })}
     }
 
-    Jar = () => {
-        if(this.state.bag == "#D94350"){
-        if(this.state.jar == "#D94350"){
+    delete = (id) => {
         this.setState({
-            jar: document.getElementsByTagName('button')[1].style.backgroundColor = "black"
-        })}else{
-            this.setState({
-                jar: document.getElementsByTagName('button')[1].style.backgroundColor = '#D94350'
+            add: this.state.add.filter((item) => {
+                return item.id !== id;
             })
-        }}
-    }
-
-    Add = () => {
-        this.setState({
-            number: this.state.number+1
         })
     }
 
-    Del = () => {
-        if(this.state.number > 1){
-            this.setState({number: this.state.number-1})
-        }
-    }
-    
-
     render(){
         return(
-            <Container>
-                <ProductContainer>
-                    <Product src={product} alt='product'/>
-                </ProductContainer>
-                <PriceContainer>
-                    <h1>INTENSITY</h1>
-                    <Price>$15</Price>
-                </PriceContainer>
-                <AboutContainer>
-                    <h2>WHAT'S INSIDE</h2>
-                    <AboutText>Garlic, paprika, chili, annato</AboutText>
-                    <h2>WHY WE LOVE IT</h2>
-                    <AboutText>Original spice blends suitable for both home and professional cooking.</AboutText>
-                </AboutContainer>
-                <ChooseContainer>
-                    <ChooseButton onClick={this.Bag}></ChooseButton>
-                    <Choose>BAG(75g)</Choose>
-                    <ChooseButton onClick={this.Jar}></ChooseButton>
-                    <Choose>JAR(150g)</Choose>
-                </ChooseContainer>
-                <BuyContainer>
-                    <BuyButton onClick={this.Del}>-</BuyButton>
-                    <BuyNumber>{this.state.number}</BuyNumber>
-                    <BuyButton onClick={this.Add}>+</BuyButton>
-                </BuyContainer>
-                <FinishButton>ADD TO CART</FinishButton>
-            </Container>
+            <MAIN>
+                <SECTION>
+                    <H2>add your tasks here!</H2>
+                    <INPUT value={this.state.tasks} onChange={this.handleChange} />
+                    <BUTTON onClick={this.handleClick}>add</BUTTON>
+                    <DIV>
+                        {this.state.add.map((item) => (
+                           <UL>
+                            <DELETE onClick={() => {this.delete(item.id)}}>del</DELETE>
+                             <LI>{item.tasks}</LI>
+                           </UL>
+                        ))}
+                    </DIV>
+                </SECTION>
+            </MAIN>
         )
     }
-
 }
