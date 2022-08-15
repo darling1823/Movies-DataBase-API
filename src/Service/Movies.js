@@ -6,10 +6,35 @@ const API = axios.create({
 })
 
 export default class Movies extends Component{
+  state = {
+    filmes: []
+  }
+
+  componentDidMount(){
+    this.getFilmes()
+  }
+
+  getFilmes = async() => {
+    const dados = await API.get()
+    const allFilmes = dados.data.results.map((item)=>{
+      return{
+        ...item,
+        nome: item.original_title,
+      }
+    })
+    this.setState({
+      filmes: allFilmes
+    })
+  }
+
   render(){
     return(
       <div>
-        
+        {this.state.filmes.map((item, index)=>(
+          <ul key={index}>
+            <li>{item.nome}</li>
+          </ul>
+        ))}
       </div>
     )
   }
