@@ -52,9 +52,7 @@ export default class TVShows extends Component{
                 <S.INPUT placeholder='Find the reviews here!' onChange={this.handleChange}/>
                 <S.H2>Shows</S.H2>
                 <S.SECTION>
-                
                 {this.state.search.map((item, index)=>(
-                    
                     <S.DIV>
                     <S.IMG src={item.poster} alt={item.original_name}/>
                     <ul key={index}>

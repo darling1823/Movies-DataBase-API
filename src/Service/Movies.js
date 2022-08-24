@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import * as S from './Style'
+import error from '../data/error.png'
 
 const API = axios.create({
     baseURL:'https://api.themoviedb.org/3/movie/popular?api_key=1a3030f1b7094958e943f2e4e378cf63&language=en-US&page=1'
@@ -47,16 +48,16 @@ export default class Movies extends Component{
     return(
       <div>
         <S.INPUT placeholder='Find the reviews here!' onChange={this.handleChange}/>
-        <S.SECTION>
         <S.H2>Movies</S.H2>
+        <S.SECTION>
         {this.state.search.map((item, index)=>(
-          <div>
-            <img src={item.imagem} alt={item.original_title}/>
+          <S.DIV>
+            <S.IMG src={item.imagem} alt={item.original_title}/>
             <ul key={index}>
-              <li>{item.original_title}</li>
-              <li>{item.overview}</li>
+              <S.TITLE>{item.original_title}</S.TITLE>
             </ul>
-          </div>
+            <S.BUTTON>REVIEW (COMING SOON)</S.BUTTON>
+          </S.DIV>
         ))}
         </S.SECTION>
       </div>

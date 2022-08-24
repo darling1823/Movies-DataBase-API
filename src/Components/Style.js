@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
 
 export const DIV = styled.div`
     background: #000000;
@@ -34,6 +33,13 @@ export const UL = styled.ul`
 
 export const LI = styled.li`
     font-size: 1.5vw;
+    color: #E5E5E5;
+    &:hover{
+        cursor: pointer;
+        color: #FCA311;
+        font-style: italic;
+        font-weight: 500;
+    }
 `
 
 export const INPUT = styled.input`

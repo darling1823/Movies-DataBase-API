@@ -25,6 +25,7 @@ export const SECTION = styled.section`
     background-color: #14213D;
     padding-top: 1vw;
     flex-wrap: wrap;
+    position: relative;
 `
 
 export const H2 = styled.h2`
@@ -75,4 +76,19 @@ export const BUTTON = styled.div`
         cursor: pointer;
         color: #E5E5E5;
     }
+`
+
+export const BACKGROUND = styled.div`
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
+export const H3 = styled.h3`
+    font-size: 2.5vw;
+    color: #E5E5E5;
+    margin-top: 1vw;
+    margin-bottom: 2vw;
 `
